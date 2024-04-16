@@ -1,0 +1,345 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.9}
+
+\begin{document}
+%Title 
+\title{Supplementary information}
+\author{Junxing Chen, Xu Chu}
+\date{}
+\maketitle
+
+\section{Calculation method}
+    \subsection{Basic diffusion theory}
+        \par To model diffusion in garnets, we utilized Fick's Second Law, as described by Fick (1855):
+        \begin{equation}
+            \frac{\partial C}{\partial t}=\frac{\partial}{\partial x}\left(D\frac{\partial C}{\partial x}\right)
+        \end{equation}
+        \par\noindent  where $D$ is the interdiffusion coefficient, $C$ is the concentration of a component, $t$ is time , $x$ is distance . With Fick's second law, it is possible to anticipate how the concentration changes over time as a result of diffusion. 
+        \\
+        \par\noindent  In a spherical coordinate (Crank, 1975):
+        \begin{equation}
+            \frac{\partial C}{\partial t}=\frac{1}{r^2}\frac{\partial}{\partial r}\left(Dr^2\frac{\partial C}{\partial r}\right)
+        \end{equation}
+        \par\noindent where $r$ represents the distance to the spherical core. 
+        \\
+        \par\noindent  If the diffusion coefficient exhibits little variation with $r$, then:
+        \begin{equation}
+            \frac{\partial C}{\partial t}=D\left(\frac{\partial^2 C}{\partial r^2}+ \frac{2}{r}\frac{\partial C}{\partial r}\right)
+        \end{equation}
+        \\
+    \subsection{Inter-diffusion \& Self-diffusion coefficients}
+        \par In a multi-component system, the diffusion of these species is coupled. We utilized a hypothetical 4-component diffusion model (A, B, C, D) as an example. One component is treated as the dependent component (D in this example), while the other three are independent. Similarly, one component is dependent in a 3-component system. In a 4-component diffusion model, the diffusion coefficient matrix consists of 9 interdiffusion coefficients ($D_{ij}$), $D_\mathrm{AA}$, $D_\mathrm{AB}$, $D_\mathrm{AC}$, $D_\mathrm{BA}$, $D_\mathrm{BB}$, $D_\mathrm{BC}$, $D_\mathrm{CA}$, $D_\mathrm{CB}$, $D_\mathrm{CA}$. These coefficients were calculated from the self-diffusion coefficient ($D_i$) using the formalism by Lasaga (1979), which assumes an ideal mineral solution model without activity coefficient gradients:
+        \begin{equation}
+            D_{ij}=D_i\delta_{ij}-\left[\frac{D_iz_iz_jX_i}{\sum\limits_{k=1}^{n} z_k^2X_kD_k}\right]\left(D_i-D_\mathrm{D}\right)
+        \end{equation}
+        \par\noindent where $\delta_{ij} = 0$, if $i=j$;$\delta_{ij}=1$, if $i\neq j$. $X_k$ represents the cation mole fraction, and $z_k$ is the ion charge.
+        \\
+        \par\noindent Self-diffusion coefficients $D_i$ are dependent on various factors such as temperature, pressure, and oxygen fugacity (Chakraborty \& Ganguly, 1991):
+        \begin{equation}
+            \mathrm{ln}D_i=\mathrm{ln}D_i^0-\left(\frac{Q_i-PV_i}{RT}\right)+\mathrm{ln}\left(\frac{f_\mathrm{O_2}}{f_\mathrm{O_2}^\mathrm{CCO}}\right)^{\frac{1}{6}}
+        \end{equation}
+        \par\noindent where $D_i^0$  is the pre-exponential factor, $k_i$ is the parameter for unit-cell dimension, $Q_i$ is the activation energy, $P$ is pressure, $V_i$ is the activation volume, and $R$ is the gas constant, $f_\mathrm{O_2}$ is oxygen fugacity, $f_\mathrm{O_2}^\mathrm{CCO}$ is the oxygen fugacity of the reference graphite–$\mathrm{O_2}$ buffer.
+        \\
+        \par\noindent In the compilation of garnet diffusion data, Carlson (2006) found and proposed that the self diffusion coefficients are positively correlated with the unit-cell dimension ($a_0$) of garnet.
+        $a_0$ and $a_\mathrm{standard}^0$ are the unit-cell dimension of sample and standard (e.g., for garnet divalent cation diffusion $a_\mathrm{alm}^0=1.1525 \, \mathrm{nm}$):
+        \begin{equation}
+            \mathrm{ln}D_i=\mathrm{ln}D_i^0+k_i(a^0-a_\mathrm{standard}^0)-\left(\frac{Q_i-PV_i}{RT}\right)+\mathrm{ln}\left(\frac{f_\mathrm{O_2}}{f_\mathrm{O_2}^\mathrm{CCO}}\right)^{\frac{1}{6}}
+        \end{equation}
+        \\
+    \subsection{Multi-component diffusion equations}
+        \par For a 4-component system, we expanded Equation 1 for 1D to a set of 3 equations for the independent species:
+            \begin{equation}
+                \begin{bmatrix}
+                    \frac{\partial C_\mathrm{A}}{\partial t} \\
+                    \frac{\partial C_\mathrm{B}}{\partial t} \\
+                    \frac{\partial C_\mathrm{C}}{\partial t}
+                \end{bmatrix} =
+                \begin{bmatrix}
+                    D_\mathrm{AA} & D_\mathrm{AB} & D_\mathrm{AC} \\
+                    D_\mathrm{BA} & D_\mathrm{BB} & D_\mathrm{BC} \\
+                    D_\mathrm{CA} & D_\mathrm{CB} & D_\mathrm{CC}
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \frac{\partial^2 C_\mathrm{A}}{\partial x^2} \\
+                    \frac{\partial^2 C_\mathrm{B}}{\partial x^2} \\
+                    \frac{\partial^2 C_\mathrm{C}}{\partial x^2}
+                \end{bmatrix}
+            \end{equation}
+            \\
+        \par\noindent Or in a spherical coordinate: 
+        \begin{equation}
+                \begin{bmatrix}
+                    \frac{\partial C_\mathrm{A}}{\partial t} \\
+                    \frac{\partial C_\mathrm{B}}{\partial t} \\
+                    \frac{\partial C_\mathrm{C}}{\partial t}
+                \end{bmatrix} =
+                \begin{bmatrix}
+                    D_\mathrm{AA} & D_\mathrm{AB} & D_\mathrm{AC} \\
+                    D_\mathrm{BA} & D_\mathrm{BB} & D_\mathrm{BC} \\
+                    D_\mathrm{CA} & D_\mathrm{CB} & D_\mathrm{CC}
+                \end{bmatrix}
+                \begin{bmatrix}
+                \frac{\partial C_\mathrm{A}}{\partial r^2}+\frac{2\partial C_\mathrm{A}}{r\partial r} \\
+                \frac{\partial C_\mathrm{B}}{\partial r^2}+\frac{2\partial C_\mathrm{B}}{r\partial r} \\
+                \frac{\partial C_\mathrm{C}}{\partial r^2}+\frac{2\partial C_\mathrm{C}}{r\partial r}
+                \end{bmatrix}
+            \end{equation}
+            \\
+    \subsection{Crank–Nicolson method}
+        \par The Crank-Nicolson method (Crank \& Nicolson, 1947) is a finite difference method used for numerically solving parabolic partial differential equations. The method is implicit in time and numerically stable. The discretization scheme for 1D and spherical coordinates are:
+        \begin{equation}
+            \frac{C_l^{n+1}-C_l^{n}}{\Delta t} = \frac{1}{2}\left[F_l^{n+1}\left(C,x,t,\frac{\partial C}{\partial x^2}\right)+F_l^{n}\left(C,x,t,\frac{\partial C}{\partial x^2}\right)\right]
+        \end{equation}
+        \begin{equation}
+            \frac{C_l^{n+1}-C_l^{n}}{\Delta t} = \frac{1}{2}\left[F_l^{n+1}\left(C,r,t,\frac{\partial C}{\partial r},\frac{\partial C}{\partial r^2}\right)+F_l^{n}\left(C,r,t,\frac{\partial C}{\partial r},\frac{\partial C}{\partial r^2}\right)\right]
+        \end{equation}
+        \\
+        \par\noindent Here, $F_l^{n}\left(C,x,t,\frac{\partial C}{\partial x^2}\right)$ and $F_l^{n}\left(C,r,t,\frac{\partial C}{\partial r},\frac{\partial C}{\partial r^2}\right)$ are expressions of the diffusion equations, $n$ represents the time nodes ($n\,=\,1,2,...,N$), and $l$ represents the spatial nodes ($l\,=\,1,2,...,L$). Accordingly, equations 1 and 3 are discretized as:
+        \begin{equation}
+            \frac{C_l^{n+1}-C_l^{n}}{\Delta t} = -\frac{D\left(C_{l+1}^{n}\Delta x_1-C_{l}^{n}\Delta x_1-C_{l}^{n}\Delta x_2+C_{l-1}^{n}\Delta x_2+C_{l+1}^{n+1}\Delta x_1-C_{l}^{n+1}\Delta x_1-C_{l}^{n+1}\Delta x_2+C_{l-1}^{n+1}\Delta x_2\right)}{\Delta x_1\Delta x_2\left(\Delta x_1+\Delta x_2\right)}
+        \end{equation}
+        \begin{equation}
+            \begin{split}
+                \frac{C_l^{n+1}-C_l^{n}}{\Delta t} = -\frac{D\left(C_{l+1}^{n}\Delta r_1-C_{l}^{n}\Delta r_1-C_{l}^{n}\Delta r_2+C_{l-1}^{n}\Delta r_2+C_{l+1}^{n+1}\Delta r_1-C_{l}^{n+1}\Delta r_1-C_{l}^{n+1}\Delta r_2+C_{l-1}^{n+1}\Delta r_2\right)}{\Delta r_1\Delta r_2\left(\Delta r_1+\Delta r_2\right)}\\-\frac{D\left(C_{l+1}^{n}\left(\Delta r_1\right)^2-C_{l}^{n}\left(\Delta r_1\right)^2+C_{l}^{n}\left(\Delta r_2\right)^2-C_{l-1}^{n}\left(\Delta r_2\right)^2+C_{l+1}^{n+1}\left(\Delta r_1\right)^2-C_{l}^{n+1}\left(\Delta r_1\right)^2+C_{l}^{n+1}\left(\Delta r_2\right)^2-C_{l-1}^{n+1}\left(\Delta r_2\right)^2\right)}{r\Delta r_1\Delta r_2\left(\Delta r_1+\Delta r_2\right)}
+            \end{split}
+        \end{equation}
+        \par\noindent where $\Delta x_1$,$\Delta x_2$ are spatial steps to the left and right of each specific spatial node, and $\Delta t$ is the time step length. Similarly, $\Delta r_1$ and $\Delta r_2$ are spatial steps to the left and right of each specific spatial node for spherical diffusion.
+        \\
+    \subsection{Diffusion modeling Matrix}    
+        \par At every time node:
+        \begin{equation}
+            \begin{split}
+                \mathbf{A^{n}}\mathbf{C^{n+1}}&=\mathbf{B^{n}}\mathbf{C^{n}}
+                \\
+                \begin{bmatrix}
+                    \mathbf{A_{AA}^{n}} & \mathbf{A_{AB}^{n}} & \mathbf{A_{AC}^{n}}\\\mathbf{A_{BA}^{n}} & \mathbf{A_{BB}} & \mathbf{A_{BC}^{n}}\\\mathbf{A_{CA}^{n}} & \mathbf{A_{CB}^{n}} & \mathbf{A_{CC}^{n}}
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \mathbf{C_A^{n+1}} \\ \mathbf{C_B^{n+1}} \\\mathbf{C_C^{n+1}}
+                \end{bmatrix}
+                &=
+                \begin{bmatrix}
+                        \mathbf{B_{AA}^{n}} & \mathbf{B_{AB}^{n}} & \mathbf{B_{AC}^{n}}\\\mathbf{B_{BA}^{n}} & \mathbf{B_{BB}^{n}} & \mathbf{B_{BC}^{n}}\\\mathbf{B_{CA}^{n}} & \mathbf{B_{CB}^{n}} & \mathbf{B_{CC}^{n}}
+                \end{bmatrix}
+                \begin{bmatrix}
+                \mathbf{C_A^{n}} \\ \mathbf{C_B^{n}} \\\mathbf{C_C^{n}}
+                \end{bmatrix}
+            \end{split}
+        \end{equation}
+        \par\noindent $\mathbf{A_{AA}^{n}}$,$\mathbf{A_{AB}^{n}}$,$\cdots$, $\mathbf{B_{AA}^{n}}$,$\mathbf{B_{AB}^{n}}$,$\mathbf{C_A^{n}}$,$\cdots$, and $\mathbf{C_A^{n+1}}$,$\mathbf{C_B^{n}}$, $\cdots$  are vectors or sub-matrices. 
+        \\
+        \par\noindent For 4-component diffusion (A,B,C independent), the vectors $\mathbf{C_i^{n}}$ consist of the contents of element $i$ at every spatial node:
+        \begin{equation}
+            \begin{bmatrix}
+                \mathbf{C_A^{n}} \\ \mathbf{C_B^{n}} \\\mathbf{C_C^{n}}
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+            C_{A,1}^{n} \\C_{A,2}^{n}\\ \cdots \\C_{A,L}^{n}\\C_{B,1}^{n} \\C_{B,2}^{n}\\ \cdots \\C_{B,L}^{n}\\C_{B,1}^{n} \\C_{B,2}^{n}\\ \cdots \\C_{B,L}^{n}
+            \end{bmatrix}
+        \end{equation}
+        \\
+        \par\noindent Sub-matrices $\mathbf{A^{n}}$ and $\mathbf{B^{n}}$ at every time node can be calculated from equations 7, 8, using the Crank-Nicolson method:
+        \par\noindent For 1D diffusion,
+        \begin{equation}
+            \begin{split}
+               &\mathbf{A_{ii}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{A},ii} & b^{n}_{\mathbf{A},ii} & 0 & \cdots & 0 \\
+                    -\frac{D^{n}_{ii,2}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & 1+\frac{D^{n}_{ii,2}\Delta t}{\Delta x_1\Delta x_2} & -\frac{D^{n}_{ii,2}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & -\frac{D^{n}_{ii,L-1}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & 1+\frac{D^{n}_{ii,L-1}\Delta t}{\Delta x_1\Delta x_2} & -\frac{D^{n}_{ii,L-1}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{A},ii} & d^{n}_{\mathbf{A},ii} 
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \begin{split}
+                &\mathbf{A_{ij}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{A},ij} & b^{n}_{\mathbf{A},ij} & 0 & \cdots & 0 \\
+                    -\frac{D^{n}_{ij,2}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & \frac{D^{n}_{ij,2}\Delta t}{\Delta x_1\Delta x_2} & -\frac{D^{n}_{ij,2}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & -\frac{D^{n}_{ij,L-1}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & \frac{D^{n}_{ij,L-1}\Delta t}{\Delta x_1\Delta x_2} & -\frac{D^{n}_{ij,L-1}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{A},ij} & d^{n}_{\mathbf{A},ij} 
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \begin{split}
+                &\mathbf{B_{ii}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{B},ii} & b^{n}_{\mathbf{B},ii} & 0 & \cdots & 0 \\
+                    \frac{D^{n}_{ii,2}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & 1-\frac{D^{n}_{ii,2}\Delta t}{\Delta x_1\Delta x_2} & \frac{D^{n}_{ii,2}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & \frac{D^{n}_{ii,L-1}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & 1-\frac{D^{n}_{ii,L-1}\Delta t}{\Delta x_1\Delta x_2} & \frac{D^{n}_{ii,L-1}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{B},ii} & d^{n}_{\mathbf{B},ii} 
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \begin{split}
+                &\mathbf{B_{ij}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{B},ij} & b^{n}_{\mathbf{B},ij} & 0 & \cdots & 0 \\
+                    \frac{D^{n}_{ij,2}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & -\frac{D^{n}_{ij,2}\Delta t}{\Delta x_1\Delta x_2} & \frac{D^{n}_{ij,2}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & \frac{D^{n}_{ij,L-1}\Delta t}{\Delta x_1\left(\Delta x_1+\Delta x_2\right)} & -\frac{D^{n}_{ij,L-1}\Delta t}{\Delta x_1\Delta x_2} & \frac{D^{n}_{ij,L-1}\Delta t}{\Delta x_2\left(\Delta x_1+\Delta x_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{B},ij} & d^{n}_{\mathbf{B},ij} 
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \\
+        \par\noindent For diffusion in a spherical coordinate: 
+        \begin{equation}
+            \begin{split}
+               &\mathbf{A_{ii}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{A},ii} & b^{n}_{\mathbf{A},ii} & 0 & \cdots & 0 \\
+                    \frac{D^{n}_{ii,2}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & 1+\frac{D^{n}_{ii,2}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & \frac{D^{n}_{ii,2}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & \frac{D^{n}_{ii,L-1}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & 1+\frac{D^{n}_{ii,L-1}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & \frac{D^{n}_{ii,L-1}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{A},ii} & d^{n}_{\mathbf{A},ii} 
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \begin{split}
+                &\mathbf{A_{ij}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{A},ij} & b^{n}_{\mathbf{A},ij} & 0 & \cdots & 0 \\
+                    \frac{D^{n}_{ij,2}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & \frac{D^{n}_{ij,2}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & \frac{D^{n}_{ij,2}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & \frac{D^{n}_{ij,L-1}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & \frac{D^{n}_{ij,L-1}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & \frac{D^{n}_{ij,L-1}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{A},ij} & d^{n}_{\mathbf{A},ij}  
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \begin{split}
+                &\mathbf{B_{ii}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{B},ii} & b^{n}_{\mathbf{B},ii} & 0 & \cdots & 0 \\
+                    -\frac{D^{n}_{ii,2}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & 1-\frac{D^{n}_{ii,2}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & -\frac{D^{n}_{ii,2}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & -\frac{D^{n}_{ii,L-1}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & 1-\frac{D^{n}_{ii,L-1}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & -\frac{D^{n}_{ii,L-1}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{B},ii} & d^{n}_{\mathbf{B},ii}  
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \begin{equation}
+            \begin{split}
+                &\mathbf{B_{ij}^{n}} = \\
+                 &\begin{bmatrix}
+                    a^{n}_{\mathbf{B},ij} & b^{n}_{\mathbf{B},ij} & 0 & \cdots & 0 \\
+                    -\frac{D^{n}_{ij,2}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & -\frac{D^{n}_{ij,2}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & -\frac{D^{n}_{ij,2}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)} & 0 & \vdots \\
+                    0 & \ddots & \ddots & \ddots & 0\\
+                    \vdots & 0 & -\frac{D^{n}_{ij,L-1}\Delta t\left(\Delta r_2-r\right)}{r\Delta r_1\left(\Delta r_1+\Delta r_2\right)} & -\frac{D^{n}_{ij,L-1}\Delta t\left(r+\Delta r_1-\Delta r_2\right)}{r\Delta r_1\Delta r_2} & -\frac{D^{n}_{ij,L-1}\Delta t\left(-\Delta r_1 - r\right)}{r\Delta r_2\left(\Delta r_1+\Delta r_2\right)}\\ 
+                    0 & \cdots & 0 & c^{n}_{\mathbf{B},ij} & d^{n}_{\mathbf{B},ij} 
+                \end{bmatrix}\\
+            \end{split}
+        \end{equation}
+        \par\noindent The initial profile is denoted by $\mathbf{C^{1}}$. At each time step ($n$), the $\mathbf{A^{n}}$ and $\mathbf{B^{n}}$ matrices are constructed, with the elements $a^{n}_{\mathbf{A/B},ii/ij}$, $b^{n}_{\mathbf{A/B},ii/ij}$, $c^{n}_{\mathbf{A/B},ii/ij}$, $d^{n}_{\mathbf{A/B},ii/ij}$, adjust according to the boundary conditions discussed below. The compositional profiles at the next time step ($n+1$) are solved from Equation 13. The same method applies to 2-component and 3-component diffusion problems.
+        \\
+    \subsection{Boundary condition options}
+        \subsubsection{Dirichlet (fixed-value) boundary condition}
+            \par In both the diffusions in 1D and spherical coordinates:
+            \par\noindent  For inner boundary ($l=1$):
+            \begin{equation}
+                \begin{split}
+                    a^{n}_{\mathbf{A},ii}=1,\, b^{n}_{\mathbf{A},ii}=0;\\ 
+                    a^{n}_{\mathbf{A},ij}=0,\, b^{n}_{\mathbf{A},ij}=0;\\
+                    a^{n}_{\mathbf{B},ii}=1,\, b^{n}_{\mathbf{B},ii}=0;\\
+                    a^{n}_{\mathbf{B},ij}=0,\, b^{n}_{\mathbf{B},ij}=0;\\ 
+                \end{split}
+            \end{equation}
+            \par\noindent Similarly, for outer boundary ($l=L$):
+            \begin{equation}
+                \begin{split}
+                     c^{n}_{\mathbf{A},ii}=0,\, d^{n}_{\mathbf{A},ij}=1;\\
+                     c^{n}_{\mathbf{A},ij}=0,\, d^{n}_{\mathbf{A},ij}=0;\\
+                     c^{n}_{\mathbf{B},ii}=0,\, d^{n}_{\mathbf{B},ii}=1;\\
+                     c^{n}_{\mathbf{B},ij}=0,\, d^{n}_{\mathbf{B},ij}=0;\\
+                \end{split}
+            \end{equation}
+            \\
+        \subsubsection{No-net-flux boundary condition}
+            \par\noindent This is a special case of Neumann boundary condition, with $\frac{\partial C}{\partial x}=0$ or $\frac{\partial C}{\partial r}=0$.
+            \par\noindent  For the inner boundary ($r\neq0$):
+            \begin{equation}
+                \begin{split}
+                    a^{n}_{\mathbf{A},ii}= 1+\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{A},ii}=-\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2};\\ 
+                    a^{n}_{\mathbf{A},ij}=\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{A},ij}=-\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2};\\
+                    a^{n}_{\mathbf{B},ii}=1-\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{B},ii}=\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2};\\
+                    a^{n}_{\mathbf{B},ij}=-\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{B},ij}=\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2};\\ 
+                \end{split}
+            \end{equation}
+            \par\noindent Similarly, for outer boundary:
+            \begin{equation}
+                \begin{split}
+                     c^{n}_{\mathbf{A},ii}=-\frac{D^{n}_{ii,L}\Delta t}{\left(\Delta r\right)^2},\, d^{n}_{\mathbf{A},ij}=1+\frac{D^{n}_{ii,L}\Delta t}{\left(\Delta r\right)^2};\\
+                     c^{n}_{\mathbf{A},ij}=-\frac{D^{n}_{ij,L}\Delta t}{\left(\Delta r\right)^2},\, d^{n}_{\mathbf{A},ij}=\frac{D^{n}_{ij,L}\Delta t}{\left(\Delta r\right)^2};\\
+                     c^{n}_{\mathbf{B},ii}=\frac{D^{n}_{ii,L}\Delta t}{\left(\Delta r\right)^2},\, d^{n}_{\mathbf{B},ii}=1-\frac{D^{n}_{ii,L}\Delta t}{\left(\Delta r\right)^2};\\
+                     c^{n}_{\mathbf{B},ij}=\frac{D^{n}_{ij,L}\Delta t}{\left(\Delta \right)^2},\, d^{n}_{\mathbf{B},ij}=-\frac{D^{n}_{ij,L}\Delta t}{\left(\Delta r\right)^2};\\
+                \end{split}
+            \end{equation}
+            \\
+            \par\noindent \\Additionally, in the spherical coordinate, if the inner boundary of the diffusion is the spherical core (Evans, 2010) ($r=0$):
+            \begin{equation}
+            \frac{\partial C}{\partial t}=3D\frac{\partial^2 C}{\partial r^2}
+            \end{equation}
+            \par\noindent Equation 7 can be modified to:
+            \begin{equation}
+                \begin{bmatrix}
+                    \frac{\partial C_\mathrm{A}}{\partial t} \\
+                    \frac{\partial C_\mathrm{B}}{\partial t} \\
+                    \frac{\partial C_\mathrm{C}}{\partial t}
+                \end{bmatrix} =
+                3
+                \begin{bmatrix}
+                    D_\mathrm{AA} & D_\mathrm{AB} & D_\mathrm{AC} \\
+                    D_\mathrm{BA} & D_\mathrm{BB} & D_\mathrm{BC} \\
+                    D_\mathrm{CA} & D_\mathrm{CB} & D_\mathrm{CC}
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \frac{\partial^2 C_\mathrm{A}}{\partial r^2} \\
+                    \frac{\partial^2 C_\mathrm{B}}{\partial r^2} \\
+                    \frac{\partial^2 C_\mathrm{C}}{\partial r^2}
+                \end{bmatrix}
+            \end{equation}
+        \par\noindent Thus, in this case, the $Bd$ elements in the sub-matrices are:
+        \begin{equation}
+                \begin{split}
+                    a^{n}_{\mathbf{A},ii}= 1+3\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{A},ii}=-3\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2};\\ 
+                    a^{n}_{\mathbf{A},ij}=3\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{A},ij}=-3\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2};\\
+                    a^{n}_{\mathbf{B},ii}=1-3\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{B},ii}=3\frac{D^{n}_{ii,1}\Delta t}{\left(\Delta r\right)^2};\\
+                    a^{n}_{\mathbf{B},ij}=-3\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2},\, b^{n}_{\mathbf{B},ij}=3\frac{D^{n}_{ij,1}\Delta t}{\left(\Delta r\right)^2};\\ 
+                \end{split}
+            \end{equation}
+            \\
+    \subsection{Convolution effect}
+        \par The spatial averaging effect by the finite resolution of an analytical method gives rise to artificial smoothing of the measured profile. If the excitation volume has a Gaussian intensity distribution, the measured concentration ($C'$) at a specific locality ($x$) follows (Ganguly et al., 1988):
+        \begin{equation}
+        C'(x) = \int_{-\infty}^{+\infty}\varphi(x'-x) \cdot C(x') \mathrm{d}x'
+        \end{equation}
+        \par\noindent where the density function $\varphi(x) = \frac{1}{\varepsilon\sqrt{2\pi}}\mathrm{exp}[-\frac{1}{2}(\frac{x}{\varepsilon})^2]$, and the standard deviation $\varepsilon$ is the convolution factor. The value of $\varepsilon$ has be estimated experimentally for garnet by comparing EPMA profiles with profiles obtained by instrument of much higher resolution (e.g., analytical TEM, Ganguly et al., 1998). The relationship between the characteristic diffusion length scales of the convoluted profile ($\sqrt{2D_{c}t}$) and the actual profile ($\sqrt{2Dt}$) is (Ganguly et al., 1988):
+        \begin{equation}
+        2D_{c}t=2Dt+\varepsilon^2
+        \end{equation}
+        \par\noindent The convolution effect can significantly affect the apparent diffusivity and the shape of the diffusion profile. The extent to which the convolution effect needs to be considered depends on the ratio between the measured diffusion scale ($\sqrt{2D_ct}$) and the convolution parameter ($\varepsilon$). If the measured diffusion scale ($\sqrt{2D_ct}$) is more than ten times larger than $\varepsilon$ (Ganguly et al., 1988), the convolution effect can be neglected. However, if the measured diffusion scale ($\sqrt{2D_ct}$) is of the same order of magnitude as $\varepsilon$, the convolution effect needs to be taken into account in diffusion modeling.
+
+
+    \section*{Refrence}
+        {Carlson, W. D. (2006). Rates of Fe, Mg, Mn, and Ca diffusion in garnet. American Mineralogist, 91(1), 1-11.}
+        \\ {Chakraborty, S., \& Ganguly, J. (1991). Compositional zoning and cation diffusion in garnets. Diffusion, atomic ordering, and mass transport: selected topics in geochemistry, 120-175.}
+        \\ {Crank, J., \& Nicolson, P. (1947). A practical method for numerical evaluation of solutions of partial differential equations of the heat-conduction type. In Mathematical proceedings of the Cambridge philosophical society (Vol. 43, No. 1, pp. 50-67). Cambridge University Press.}
+        \\ {Crank, J. (1975). Diffusion in a sphere. The mathematics of diffusion, 89-103.}
+        \\ {Evans, L. C. (2010). Partial differential equations. American Mathematical Soc.}
+        \\ {Fick, A. (1855). V. On liquid diffusion. The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, 10(63), 30-39. }
+        \\ {Ganguly, J., Bhattacharya, R. N., \& Chakraborty, S. (1988). Convolution effect in the determination of composition profiles and diffusion coefficients by microprobe step scans. American Mineralogist, 73(7-8), 901-909.}
+        \\ {Ganguly, J., Cheng, W., \& Chakraborty, S. (1998). Cation diffusion in aluminosilicate garnets: experimental determination in pyrope-almandine diffusion couples. Contributions to Mineralogy and Petrology, 131(2-3), 171-180.}
+        \\ {Lasaga, A. C. (1979). Multicomponent exchange and diffusion in silicates. Geochimica et Cosmochimica Acta, 43(4), 455-469.}
+\end{document}
